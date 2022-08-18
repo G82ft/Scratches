@@ -1,9 +1,11 @@
 import tkinter
 from tkinter import Tk, Frame, Label, Button, StringVar
-from tkinter.font import Font
+from tkinter.font import Font, families
 from tkinter.messagebox import showinfo
 from time import sleep
 from threading import Thread
+
+family: str
 
 
 def flash(element) -> None:
@@ -35,6 +37,11 @@ class Root:
         self.labels: list = [[None for _ in range(3)] for _ in range(3)]
         self.buttons: list = [[None for _ in range(3)] for _ in range(3)]
 
+        for family in families():
+            font = Font(font=(family, 20))
+            if font.metrics('fixed'):
+                break
+
         for i in range(3):
             for j in range(3):
                 var = StringVar()
@@ -43,7 +50,7 @@ class Root:
                 self.buttons[i][j] = Button(
                     f,
                     textvariable=var,
-                    font=Font(font=('Droid Sans Mono', 20)),
+                    font=Font(font=(family, 20)),
                     bd=5,
                     command=lambda x=i, y=j: self.handle_turn(x, y)
                 )
@@ -58,7 +65,7 @@ class Root:
             self.root,
             text=' ',
             textvariable=self.turn,
-            font=Font(font=('Droid Sans Mono', 20))
+            font=Font(font=(family, 20))
         ).grid(column=0, row=1)
 
     def handle_turn(self, column: int, row: int):
