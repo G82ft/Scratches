@@ -5,43 +5,6 @@ from tkinter.messagebox import showinfo
 from time import sleep
 from threading import Thread
 
-WINS: list = [
-    [
-        [True] * 3,
-        [False] * 3,
-        [False] * 3
-    ],
-    [
-        [False] * 3,
-        [True] * 3,
-        [False] * 3
-    ],
-    [
-        [False] * 3,
-        [False] * 3,
-        [True] * 3
-    ],
-    [
-        [True, False, False]
-    ] * 3,
-    [
-        [False, True, False]
-    ] * 3,
-    [
-        [False, False, True]
-    ] * 3,
-    [
-        [True, False, False],
-        [False, True, False],
-        [False, False, True]
-    ],
-    [
-        [False, False, True],
-        [False, True, False],
-        [True, False, False]
-    ]
-]
-
 
 def flash(element) -> None:
     def _flash(element):
